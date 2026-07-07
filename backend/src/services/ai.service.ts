@@ -1,14 +1,8 @@
 import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 import OpenAI from 'openai';
-import { pino } from 'pino';
 import { buildSystemPrompt, buildUserPrompt } from '../ai/prompt';
 import { CrmRecord } from '../types/crm';
-
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  }
-});
+import { logger } from '../utils/logger';
 
 // Define the schema for structured outputs (in Gemini & OpenAI formats)
 const crmRecordProperties = {

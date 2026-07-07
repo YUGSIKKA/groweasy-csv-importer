@@ -1,13 +1,7 @@
 import { Express } from 'express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { pino } from 'pino';
-
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  }
-});
+import { logger } from './logger';
 
 const options: swaggerJSDoc.Options = {
   definition: {

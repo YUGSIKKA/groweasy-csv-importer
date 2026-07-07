@@ -3,15 +3,9 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import { pino } from 'pino';
 import importRouter from './routes/import.routes';
 import { setupSwagger } from './utils/swagger';
-
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  }
-});
+import { logger } from './utils/logger';
 
 const app = express();
 const PORT = process.env.PORT || 5000;

@@ -1,16 +1,10 @@
 import { Request, Response } from 'express';
 import fs from 'fs';
-import { pino } from 'pino';
 import { parseCsvStream } from '../parser/csv.parser';
 import { AiService } from '../services/ai.service';
 import { crmRecordSchema } from '../validators/crm.validator';
 import { CrmRecord } from '../types/crm';
-
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  }
-});
+import { logger } from '../utils/logger';
 
 const aiService = new AiService();
 

@@ -1,11 +1,5 @@
 import app from './index';
-import { pino } from 'pino';
-
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  }
-});
+import { logger } from './utils/logger';
 
 const PORT = process.env.PORT || 5000;
 

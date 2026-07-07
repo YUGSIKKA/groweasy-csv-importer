@@ -1,12 +1,6 @@
 import fs from 'fs';
 import csvParser from 'csv-parser';
-import { pino } from 'pino';
-
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  }
-});
+import { logger } from '../utils/logger';
 
 interface ParseResult {
   totalRows: number;
