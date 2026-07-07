@@ -47,6 +47,52 @@ const upload = multer({
   }
 });
 
+/**
+ * @openapi
+ * /api/import:
+ *   post:
+ *     summary: Import CSV leads using AI mapping
+ *     description: Accepts a CSV file, streams it, and standardizes columns to the target CRM schema using Gemini or OpenAI. Normalizes phones, dates, and status fields.
+ *     tags:
+ *       - Leads Import
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               csv:
+ *                 type: string
+ *                 format: binary
+ *                 description: The CSV file. Max 20MB.
+ *     responses:
+ *       200:
+ *         description: Mapped leads returned successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 totalRows:
+ *                   type: integer
+ *                 imported:
+ *                   type: integer
+ *                 skipped:
+ *                   type: integer
+ *                 failedBatches:
+ *                   type: integer
+ *                 records:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       400:
+ *         description: Missing file or validation size error
+ *       500:
+ *         description: AI mapping or internal server error
+ */
 // POST /api/import - accepts single file in the 'csv' field
 router.post('/import', (req, res, next) => {
   upload.single('csv')(req, res, (err) => {

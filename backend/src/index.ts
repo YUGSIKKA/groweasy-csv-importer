@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { pino } from 'pino';
 import importRouter from './routes/import.routes';
+import { setupSwagger } from './utils/swagger';
 
 const logger = pino({
   transport: {
@@ -56,6 +57,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // API Routes
 app.use('/api', importRouter);
+
+// Setup Interactive Swagger UI Documentation
+setupSwagger(app);
 
 // Health Check
 app.get('/health', (req: Request, res: Response) => {
